@@ -1,13 +1,7 @@
 import React, { useState } from 'react';
 import z from 'zod';
 
-interface LocalItem {
-  id: string;
-  name: string;
-  description: string;
-  price: number;
-  imageUrl: string; 
-}
+
 
 
 const formSchema = z.object({
@@ -38,7 +32,7 @@ const UploadFile = () => {
     });
 
     if (!validation.success) {
-      alert(validation.error.errors[0].message);
+      alert(validation.error.issues[0].message);
       return;
     }
 
@@ -54,11 +48,11 @@ const UploadFile = () => {
   if(!closeUpload) return null;
   
   return (
-    // Backdrop overlay
+    
     <div className='fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/50 px-6 overflow-y-auto '>
       
       
-      {/* Form wrapper with background and proper padding */}
+      
       <form className=' relative bg-white rounded-lg shadow-xl w-full max-w-md mx-6 ' onSubmit={handleSubmit}>
          <button type='button' className='absolute top-1 right-2 rounded-full w-8 h-8 flex items-center justify-center  border-gray-500 text-white bg-purple-300 hover:bg-purple-500' onClick={() => setCloseUpload(false)}>x</button>
         {/* Main flex vertical stack container */}
@@ -148,7 +142,8 @@ const UploadFile = () => {
           <button 
             type="submit" 
             className='py-6 px-3 bg-blue-600 hover:bg-blue-700 text-white font-medium p-2.5 rounded transition mt-2'
-          >
+         onClick={handleUpload}
+         >
             Post ad
           </button>
         </div>
