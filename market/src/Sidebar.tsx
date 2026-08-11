@@ -8,7 +8,7 @@ const Sidebar = () => {
      <div className="sticky top-0 ">
      
      
-     <aside className=" hidden lg: block flex flex-col gap-2">
+     <aside className="hidden flex flex-col gap-2">
      <ul>
       <nav>
     <h3 className="font-bold mb-4">Catergories</h3>

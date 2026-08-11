@@ -13,8 +13,10 @@ import img12 from './assets/car sub.jpg'
 import img13 from './assets/studio microphone.webp'
 import img14 from './assets/iphone 17.webp'
 import img15 from './assets/coil overs.jpg'
-import { useState } from 'react';
 import MarketItem from './MarketItem'
+import type {AdItem} from './App'
+
+
 
 interface Demo {
   id: number;
@@ -43,29 +45,65 @@ const DemoContent: Demo[] = [
   {id: 14, title: "Coil overs", price: 4500, description:"new coil over for honda ballade", location: "Cape Town", image: img15},
 ];
 
-const Market = () => {
-  // FIXED: State moved INSIDE the component, and typed to 'Demo | null'
-  const [selectedProduct, setSelectedProduct] = useState<Demo | null>(null);
+interface MarketProps {
+  ads: AdItem[];
+  selectedProduct: Demo | null; 
+  setSelectedProduct: React.Dispatch<React.SetStateAction<any | null>>;
+}
+
+const Market = ({ ads, selectedProduct, setSelectedProduct }: MarketProps) => {
+  
+
 
   return (
     <div className="w-full items-center justify-center  flex flex-col py-6 gap-2">
       
       {/* Search Bar Section */}
-      <div className="flex justify-center items-center gap-2">
+      <div className=" flex justify-center   items-center gap-2">
         <input 
           className="text-black text-center py-4 px-10 border rounded mb-10" 
           placeholder="Search"
         />
+
       </div>
 
-      {/* Main Grid View: Only shows when no item is selected */}
+      
       {!selectedProduct && (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+          
+           {ads.map((ad) => {
+            const firstfile = Array.isArray(ad.file) ? ad.file[0] : null; 
+
+
+            const imageSrc = firstfile instanceof File 
+              ? URL.createObjectURL(firstfile) 
+              : '';
+
+            return (
+              <div 
+                key={ad.id} 
+                className="border p-4 rounded bg-white cursor-pointer hover:scale-105 hover:shadow-2xl transition-all"
+                onClick={() => setSelectedProduct(ad)} // Opens this custom ad in details modal
+              >
+                {imageSrc && (
+                  <img 
+                    src={imageSrc} 
+                    alt={ad.title} 
+                    className="w-full h-40 object-cover rounded"
+                  />
+                )}
+                <h2 className="font-semibold mt-2">{ad.title}</h2>
+                <p className="text-green-600 font-bold">R {ad.price}</p>
+                <p className="text-gray-500 text-sm">{ad.location}</p>
+              </div>
+            );
+          })}
+          
           {DemoContent.map((Demo) => (
-            // FIXED: Added cursor pointer and an onClick wrapper to pick the item
+            
             <div 
               key={Demo.id} 
-              className="border p-4 rounded bg-white cursor-pointer hover:shadow-md transition-shadow"
+              className="border p-4 rounded bg-white cursor-pointer hover:scale-105 hover:shadow-2xl transition-shadow"
               onClick={() => setSelectedProduct(Demo)}
             >
               <img src={Demo.image} alt={Demo.title} className=" w-full h-40 object-contain object-cover rounded"/>

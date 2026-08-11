@@ -1,24 +1,50 @@
 
-import './App.css'
-import Footer from './Footer'
-import { Navbar } from './Navbar'
+import {useState} from 'react'
+
+import Navbar from './Navbar'
 import Sidebar from './Sidebar'
 import Market from './Market'
+import UploadFile from './UploadFile'
+import Footer from './Footer'
+
+export interface AdItem {
+  id: string | number;
+  title: string;
+  description: string;
+  price: number;
+  category: string;
+  file: File[] | string;
+  location: string;
+}
+
 
 function App() {
-  
+  const [showUpload, setShowUpload] = useState<boolean>(false);
+  const [selectedProduct, setSelectedProduct] = useState<any | null>(null); // Kept for your product detail views
+  const [ads, setAds] = useState<AdItem[]>([]);
 
+  
+    const handleAddAd = (newAd: AdItem) => {
+    setAds((prevAds) => [newAd, ...prevAds]);
+  };
   return (
     <>
-    <div className='flex flex-col '>
-<Navbar/>
+    
+<Navbar onOpenUpload={() => setShowUpload(true)}/>
 
-<div className='flex gap-10'>
+
 <Sidebar/>
-<Market/>
-</div>
+<Market ads={ads} 
+        selectedProduct={selectedProduct} 
+        setSelectedProduct={setSelectedProduct} />
+{showUpload && (<UploadFile
+ onAddAd={handleAddAd} 
+          onClose={() => setShowUpload(false)} 
 
-    </div>
+/>)}
+
+
+  
     <Footer/>
     </>
   )
