@@ -1,55 +1,32 @@
+// app/page.tsx
 "use client";
-
-import {useState} from 'react'
 
 import Navbar from '@/components/Navbar'
 import Search from '@/components/Search'
 import Market from '@/components/Market'
 import UploadFile from '@/components/UploadFile'
 import Footer from '@/components/Footer'
+import { useAdStore } from "@/Zustand/useAdStore";
 
-export interface AdItem {
-  id: string | number;
-  title: string;
-  description: string;
-  price: number;
-  category: string;
-  file: File[] | string;
-  location: string;
-}
+export default function Home() {
+  const showUpload = useAdStore((state) => state.showUpload);
+  const setShowUpload = useAdStore((state) => state.setShowUpload);
+  const addAd = useAdStore((state) => state.addAd);
 
-
-function App() {
-  const [showUpload, setShowUpload] = useState<boolean>(false);
-  const [selectedProduct, setSelectedProduct] = useState<any | null>(null); // Kept for your product detail views
-  const [ads, setAds] = useState<AdItem[]>([]);
-
-  
-    const handleAddAd = (newAd: AdItem) => {
-    setAds((prevAds) => [newAd, ...prevAds]);
-  };
   return (
     <>
-    
-<Navbar onOpenUpload={() => setShowUpload(true)}/>
+      <Navbar onOpenUpload={() => setShowUpload(true)} />
 
+      <Search />
+      <Market />
+      {showUpload && (
+        <UploadFile
+          onAddAd={addAd}
+          onClose={() => setShowUpload(false)}
+        />
+      )}
 
-
-<Search/>
-<Market ads={ads} 
-        selectedProduct={selectedProduct} 
-        setSelectedProduct={setSelectedProduct} />
-{showUpload && (<UploadFile
- onAddAd={handleAddAd} 
-          onClose={() => setShowUpload(false)} 
-
-/>)}
-
-
-  
-    <Footer/>
+      <Footer />
     </>
-  )
+  );
 }
-
-export default App

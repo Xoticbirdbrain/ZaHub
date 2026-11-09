@@ -1,9 +1,16 @@
-
+"use client";
+import { useState } from "react";
 
   const CreatAccount = () => {
  const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string | number>('');
  const [closeUpload, setCloseUpload] = useState<boolean>(true);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log({ name, email, password });
+  
+  };
 
   if(!closeUpload) return null;
   return (
