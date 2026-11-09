@@ -1,7 +1,6 @@
-// components/MarketItem.tsx
 "use client";
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import type { StaticImageData } from 'next/image'
 
 interface props {
@@ -16,6 +15,27 @@ interface props {
 
 const MarketItem = (props: props) => {
   const [message, setMessage] = useState<string>("");
+  const [imageSrc, setImageSrc] = useState<string>("");
+
+  // Only create object URLs on the client, never during server render
+  useEffect(() => {
+    const f = props.file;
+    if (Array.isArray(f)) {
+      const first = f[0];
+      if (first instanceof File) {
+        const url = URL.createObjectURL(first);
+        setImageSrc(url);
+        return () => URL.revokeObjectURL(url);
+      }
+      setImageSrc("");
+      return;
+    }
+    if (typeof f === "string") {
+      setImageSrc(f);
+      return;
+    }
+    setImageSrc(f.src);
+  }, [props.file]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -31,19 +51,6 @@ const MarketItem = (props: props) => {
       if (form) form.requestSubmit();
     }
   };
-
-  const getImageSrc = () => {
-    const f = props.file;
-    if (Array.isArray(f)) {
-      const first = f[0];
-      if (first instanceof File) return URL.createObjectURL(first);
-      return "";
-    }
-    if (typeof f === "string") return f;
-    return f.src;
-  };
-
-  const imageSrc = getImageSrc();
 
   return (
     <div className='w-full px-4 md:px-8 max-w-5xl mx-auto flex flex-col md:flex-row gap-8 p-6 items-start justify-center'>
