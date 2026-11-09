@@ -12,9 +12,9 @@
     "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
   },
   "dependencies": {
-    "next": "16.4.5",
-    "react": "19.3.0",
-    "react-dom": "19.3.0",
+    "next": "^16.4.5",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
     "react-icons": "^5.7.0",
     "zod": "^4.6.7",
     "zustand": "^5.1.0"
