@@ -12,13 +12,13 @@ export const Navbar = ({onOpenUpload}: NavbarProps) => {
   
   return (
     
-    <div className='w-full flex justify-center'>
-    <nav className="w-full max-w-5xl flex flex-row justify-between items-center ">
+    <div className='w-full p-4'>
+    <nav className="mx-auto w-full flex flex-row justify-between items-center ">
          
            
        <a className='' >logo</a>
  
-        <ul className=' h-25 flex flex-row  justify-end gap-6 items-center'>
+        <ul className='h-25 flex flex-row justify-end gap-6 items-center'>
           
 
 
@@ -26,7 +26,7 @@ export const Navbar = ({onOpenUpload}: NavbarProps) => {
          <li className='items-center'><FaMessage size={30}/></li>
          <li className='items-center'><IoIosNotifications size={40} /></li>
         
-          <li><button className='rounded px-3 py-6 border-gray-500 text-white bg-purple-300 hover:bg-purple-500' onClick={onOpenUpload}>Create Listing</button></li>
+          <li><button className='rounded border px-4 py-2 border-gray-500 text-white bg-[#8976b1] hover:bg-[#77639e]' onClick={onOpenUpload}>Create Listing</button></li>
       
         </ul>
 

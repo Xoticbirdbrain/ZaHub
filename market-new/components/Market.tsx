@@ -57,9 +57,9 @@ export default function Market() {
   const filteredDemo = DemoContent.filter(matchesSearch);
 
   return (
-    <div id="market" className="flex w-full flex-col items-center justify-center gap-2 py-6">
+    <div id="market" className="mx-4 my-4">
       {!selectedProduct && (
-        <div className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-5">
           {filteredAds.map((ad) => {
           
   const firstFile = Array.isArray(ad.file) ? ad.file[0] : null;
@@ -67,13 +67,13 @@ export default function Market() {
             return (
               <div
                 key={ad.id}
-                className="cursor-pointer rounded border bg-white p-4 transition-all hover:scale-105 hover:shadow-2xl"
+                className="cursor-pointer rounded border bg-[#d1cde5] p-3 transition-all hover:scale-105 hover:shadow-2xl"
                 onClick={() => setSelectedProduct(ad)}
               >
                 {firstFile instanceof File ? (
                   <UploadedImage file={firstFile} title={ad.title} />
                 ) : stringSrc ? (
-                  <img src={stringSrc} alt={ad.title} className="h-40 w-full rounded object-cover" />
+                  <img src={stringSrc} alt={ad.title} className="h-32 w-full rounded object-cover" />
                 ) : null}
                 <h2 className="mt-2 font-semibold">{ad.title}</h2>
                 <p className="font-bold text-green-600">R {ad.price}</p>
