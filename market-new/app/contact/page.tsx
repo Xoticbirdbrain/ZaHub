@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-
+import BackButton from "@/components/BackButton"
 export default function Contact() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -20,6 +20,7 @@ export default function Contact() {
 
   return (
     <div className="mx-auto w-full max-w-5xl px-4 py-10">
+      <BackButton/>
       <h1 className="text-3xl font-bold">Contact Us</h1>
       <p className="mt-2 text-zinc-500">Have a question about a listing, or need help with your account? Send us a message.</p>
 
@@ -28,7 +29,7 @@ export default function Contact() {
           <h2 className="text-lg font-semibold">Get in touch</h2>
           <p className="mt-2 text-zinc-600">We usually reply within 1 working day.</p>
           <div className="mt-4 space-y-2 text-sm text-zinc-600">
-            <p><span className="font-semibold">Email:</span> support@zahub.co.za</p>
+            <p><span className="font-semibold">Email:</span>jspandill@gmail.com</p>
             <p><span className="font-semibold">Location:</span> Cape Town, South Africa</p>
             <p><span className="font-semibold">Hours:</span> Mon - Fri, 9am - 5pm</p>
           </div>

@@ -8,12 +8,12 @@ import type { AdItem } from "@/Zustand/useAdStore";
 
 const DemoContent: AdItem[] = [
   { id: 0, title: "Wireless Earphones", price: 299, description: "Selling my earphones", location: "Cape Town", category: "Electronics", file: "/wirelessheadphones.webp" },
-  { id: 1, title: "【entity-Honda¦canonical_name=Honda】-Ballade 1.6", price: 65000, description: "Selling my car open to offers", location: "Mitchells Plain", category: "Vehicle Parts", file: "/【entity-honda¦canonical_name=Honda】-ballade.jpg" },
-  { id: 2, title: "【entity-Dell¦canonical_name=Dell】-Laptop", price: 1500, description: "Used laptop for sale", location: "Cape Town", category: "Electronics", file: "/【entity-dell¦canonical_name=Dell】-laptop.webp" },
+  { id: 1, title: "Honda-Ballade 1.6", price: 65000, description: "Selling my car open to offers", location: "Mitchells Plain", category: "Vehicle Parts", file: "/honda-ballade.jpg" },
+  { id: 2, title: "Dell-Laptop", price: 1500, description: "Used laptop for sale", location: "Cape Town", category: "Electronics", file: "/dell-laptop.webp" },
   { id: 3, title: "Rims", price: 3000, description: "15 inch rims for sale", location: "Cape Town", category: "Vehicle Parts", file: "/rims.webp" },
   { id: 4, title: "Bluetooth Speaker", price: 599, description: "Selling my speaker no longer using it", location: "Cape Town", category: "Electronics", file: "/bluetooth-speaker.webp" },
   { id: 5, title: "Tv", price: 1000, description: "Bought a new one still in good condition", location: "Cape Town", category: "Electronics", file: "/tv.webp" },
-  { id: 6, title: "【entity-Hisense¦canonical_name=Hisense】 Fridge", price: 1800, description: "Leaving the country needs to go asap", location: "Cape Town", category: "Home Appliances", file: "/【entity-hisense¦canonical_name=Hisense】.webp" },
+  { id: 6, title: "Hisens Fridge", price: 1800, description: "Leaving the country needs to go asap", location: "Cape Town", category: "Home Appliances", file: "/hisense.webp" },
   { id: 7, title: "Microwave", price: 500, description: "No longer using", location: "Cape Town", category: "Home Appliances", file: "/microwave.jpg" },
   { id: 8, title: "Cupboard", price: 700, description: "Moving out needs to go asap", location: "Cape Town", category: "Furniture", file: "/cupboard.jpg" },
   { id: 9, title: "Desk", price: 900, description: "Selling my eldest son's study desk he moved out", location: "Cape Town", category: "Furniture", file: "/desk.jpg" },

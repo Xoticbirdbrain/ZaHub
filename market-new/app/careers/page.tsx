@@ -1,9 +1,9 @@
-
+import BackButton from "@/components/BackButton"
 
 const Careers = () => {
   return (
     <div className="flex flex-col"><h4>
-
+   <BackButton/>
         Available Careers at Square Hub
 
     </h4>
@@ -16,7 +16,7 @@ const Careers = () => {
 <div>
     <h5 className="font-semibold">Junior Front-end developer</h5>
     <span>-</span>
-    <h5>0 - 3 years Experience</h5>
+    <h5>0 - 6 months Experience</h5>
 </div>
 <div>
     <h5 className="font-semibold">Senior Backend Engineer</h5>

@@ -1,11 +1,12 @@
-
+import BackButton from "@/components/BackButton"
 
 const Privacy = () => {
   return (
     <div>
+    <BackButton/>
     <h3>Privacy Policy</h3>
 
-    <strong>Privacy Policy</strong><p>This privacy policy applies to the Square hub app for mobile
+    <p>This privacy policy applies to the Square hub app for mobile
      devices and web browsers, together with any related services operated by Square hub
     (collectively, the "Application"). Square hub is hereby referred to as the "Service Provider".</p>
     <br/><strong>Information Collection and Use</strong><p>
@@ -114,7 +115,7 @@ const Privacy = () => {
      the Service Provider will seek your consent to material changes before they take effect.</p><br/>
      <p>Previous versions of this Privacy Policy will be maintained and made available upon request
     by contacting the Service Provider at jspandill@gmail.com.</p><br/>
-    <p>This privacy policy is effective as of 2026-08-07</p><br/>
+    <p>This privacy policy is effective as of 2026-11-17</p><br/>
     <strong>Your Consent</strong>
     <p>Where processing is based on consent, you provide that consent by affirmatively opting in
     to the relevant feature or action. You may withdraw consent at any time without affecting processing

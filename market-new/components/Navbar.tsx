@@ -1,6 +1,8 @@
 
 import { FaMessage } from "react-icons/fa6";
 import { IoIosNotifications } from "react-icons/io";
+import Image from "next/image";
+import logo from "@/public/no bg square hub.png"
 
 interface NavbarProps {
 onOpenUpload: () => void
@@ -16,7 +18,10 @@ export const Navbar = ({onOpenUpload}: NavbarProps) => {
     <nav className="mx-auto w-full flex flex-row justify-between items-center ">
          
            
-       <a className='' >logo</a>
+       <Image width={50} height={50} src={logo}
+       alt="square hub logo"
+       
+       />
  
         <ul className='h-25 flex flex-row justify-end gap-6 items-center'>
           

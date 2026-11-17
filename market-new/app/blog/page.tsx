@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-
+import BackButton from "@/components/BackButton"
 const posts = [
   {
     id: 1,
@@ -51,6 +51,7 @@ export default function Blog() {
 
   return (
     <div className="mx-auto w-full max-w-5xl px-4 py-10">
+      <BackButton/>
       <h1 className="text-3xl font-bold">Blog</h1>
       <p className="mt-2 text-zinc-500">Tips for buyers and sellers.</p>
 
