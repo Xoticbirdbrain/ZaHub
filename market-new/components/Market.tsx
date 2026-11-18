@@ -7,11 +7,11 @@ import { useAdStore } from "@/Zustand/useAdStore";
 import type { AdItem } from "@/Zustand/useAdStore";
 
 const DemoContent: AdItem[] = [
-  { id: 0, title: "Wireless Earphones", price: 299, description: "Selling my earphones", location: "Cape Town", category: "Electronics", file: "/wirelessheadphones.webp" },
+  { id: 0, title: "Wireless Hearphones", price: 299, description: "Selling my earphones", location: "Cape Town", category: "Electronics", file: "/wireless headphones.jpg" },
   { id: 1, title: "Honda-Ballade 1.6", price: 65000, description: "Selling my car open to offers", location: "Mitchells Plain", category: "Vehicle Parts", file: "/honda-ballade.jpg" },
-  { id: 2, title: "Dell-Laptop", price: 1500, description: "Used laptop for sale", location: "Cape Town", category: "Electronics", file: "/dell-laptop.webp" },
-  { id: 3, title: "Rims", price: 3000, description: "15 inch rims for sale", location: "Cape Town", category: "Vehicle Parts", file: "/rims.webp" },
-  { id: 4, title: "Bluetooth Speaker", price: 599, description: "Selling my speaker no longer using it", location: "Cape Town", category: "Electronics", file: "/bluetooth-speaker.webp" },
+  { id: 2, title: "Dell-Laptop", price: 1500, description: "Used laptop for sale", location: "Cape Town", category: "Electronics", file: "/dell laptop new.jpg" },
+  { id: 3, title: "Rims", price: 3000, description: "15 inch rims for sale", location: "Cape Town", category: "Vehicle Parts", file: "/rims.jpg" },
+  { id: 4, title: "Bluetooth Speaker", price: 599, description: "Selling my speaker no longer using it", location: "Cape Town", category: "Electronics", file: "/bluetooth speaker.jpg" },
   { id: 5, title: "Tv", price: 1000, description: "Bought a new one still in good condition", location: "Cape Town", category: "Electronics", file: "/tv.webp" },
   { id: 6, title: "Hisens Fridge", price: 1800, description: "Leaving the country needs to go asap", location: "Cape Town", category: "Home Appliances", file: "/hisense.webp" },
   { id: 7, title: "Microwave", price: 500, description: "No longer using", location: "Cape Town", category: "Home Appliances", file: "/microwave.jpg" },
@@ -20,11 +20,10 @@ const DemoContent: AdItem[] = [
   { id: 10, title: "Office Furniture", price: 300, description: "Tenants left need to make room for new tenants", location: "Cape Town", category: "Furniture", file: "/office-furniture.webp" },
   { id: 11, title: "Car Sub", price: 450, description: "Working 100% just needs amp", location: "Cape Town", category: "Vehicle Parts", file: "/car-sub.jpg" },
   { id: 12, title: "Studio Microphone", price: 650, description: "No longer using it", location: "Cape Town", category: "Electronics", file: "/studio-microphone.webp" },
-  { id: 13, title: "Iphone 17 pro max", price: 17000, description: "Used iphone minor scratches", location: "Cape Town", category: "Electronics", file: "/iphone-17.webp" },
+  { id: 13, title: "Iphone 17 pro max", price: 17000, description: "Used iphone minor scratches", location: "Cape Town", category: "Electronics", file: "/iphone 17.jpg" },
   { id: 14, title: "Coil overs", price: 4500, description: "New coil over for honda ballade", location: "Cape Town", category: "Vehicle Parts", file: "/coil-overs.jpg" },
 ];
 
-// Only creates an object URL on the client, after mount. Never on the server.
 function UploadedImage({ file, title }: { file: File; title: string }) {
   const [src, setSrc] = useState("");
 
@@ -35,7 +34,11 @@ function UploadedImage({ file, title }: { file: File; title: string }) {
   }, [file]);
 
   if (!src) return null;
-  return <img src={src} alt={title} className="h-40 w-full rounded object-cover" />;
+  return (
+    <div className="relative h-40 w-full overflow-hidden rounded">
+      <img src={src} alt={title} className="h-full w-full object-cover" />
+    </div>
+  );
 }
 
 export default function Market() {
@@ -59,11 +62,10 @@ export default function Market() {
   return (
     <div id="market" className="mx-4 my-4">
       {!selectedProduct && (
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-5">
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
           {filteredAds.map((ad) => {
-          
-  const firstFile = Array.isArray(ad.file) ? ad.file[0] : null;
-  const stringSrc = typeof ad.file === "string" ? ad.file : "";
+            const firstFile = Array.isArray(ad.file) ? ad.file[0] : null;
+            const stringSrc = typeof ad.file === "string" ? ad.file : "";
             return (
               <div
                 key={ad.id}
@@ -73,10 +75,12 @@ export default function Market() {
                 {firstFile instanceof File ? (
                   <UploadedImage file={firstFile} title={ad.title} />
                 ) : stringSrc ? (
-                  <img src={stringSrc} alt={ad.title} className="h-32 w-full rounded object-cover" />
+                  <div className="relative h-40 w-full overflow-hidden rounded">
+                    <img src={stringSrc} alt={ad.title} className="h-full w-full object-contain" />
+                  </div>
                 ) : null}
                 <h2 className="mt-2 font-semibold">{ad.title}</h2>
-                <p className="font-bold text-green-600">R {ad.price}</p>
+                <p className="font-bold text-[#645384]">R {ad.price}</p>
                 <p className="text-sm text-gray-500">{ad.location}</p>
               </div>
             );
@@ -85,19 +89,20 @@ export default function Market() {
           {filteredDemo.map((item) => (
             <div
               key={item.id}
-              className="cursor-pointer rounded border bg-white p-4 transition-all hover:scale-105 hover:shadow-2xl"
+              className="cursor-pointer rounded bg-[#f1f0f7] p-4 shadow-sm transition-all hover:scale-105 hover:shadow-2xl"
               onClick={() => setSelectedProduct(item)}
             >
-              <Image
-                src={typeof item.file === "string" ? item.file : "/wirelessheadphones.webp"}
-                alt={item.title}
-                width={400}
-                height={300}
-                className="h-40 w-full rounded object-cover"
-              />
-              <h2 className="mt-2 font-semibold">{item.title}</h2>
-              <p className="font-bold text-green-600">R {item.price}</p>
-              <p className="text-sm text-gray-500">{item.location}</p>
+              <div className="relative aspect-4/3 w-full overflow-hidden rounded bg-[#e5e3f1]">
+                <Image
+                  src={typeof item.file === "string" ? item.file : "/wireless headphones.jpg"}
+                  alt={item.title}
+                  fill
+                  className="object-cover object-center"
+                />
+              </div>
+              <h2 className="mt-2 font-semibold text-black">{item.title}</h2>
+              <p className="font-bold text-[#645384]">R {item.price}</p>
+              <p className="text-sm text-black">{item.location}</p>
             </div>
           ))}
         </div>
@@ -105,9 +110,9 @@ export default function Market() {
 
       {selectedProduct && (
         <div className="flex items-center justify-center p-6">
-          <div className="relative rounded-lg border bg-gray-50 p-6">
+          <div className="relative w-full max-w-5xl rounded-lg shadow-sm bg-[#f1f0f7] p-6">
             <button
-              className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full bg-red-500 font-bold text-white"
+              className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full bg-black font-bold text-white"
               onClick={() => setSelectedProduct(null)}
             >
               x

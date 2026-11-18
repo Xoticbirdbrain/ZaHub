@@ -15,23 +15,23 @@ export default function Search() {
   const ads = useAdStore((state) => state.ads);
 
   return (
-    <section className="mx-4 my-4 rounded-2xl bg-zinc-100 p-4 shadow-sm">
+    <section className="mx-4 my-4 rounded-2xl bg-[#e5e3f1] p-4 shadow-sm">
       <div className="flex flex-col gap-3 md:flex-row">
         <div className="relative flex-1">
-          <FaMagnifyingGlass className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400" />
+          <FaMagnifyingGlass className="absolute left-4 top-1/2 -translate-y-1/2 text-black" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search for laptop, rims, TV, speaker..."
-            className="w-full rounded-xl border border-zinc-200 bg-white py-3 pl-11 pr-4 text-base outline-none focus:border-black focus:ring-2 focus:ring-black/10"
+            className="w-full rounded-xl border border-zinc-200 bg-white py-3 pl-11 pr-4 text-black outline-none focus:border-black focus:ring-2 focus:ring-black/10"
           />
         </div>
 
         <select
           value={selectedCategory}
           onChange={(e) => setSelectedCategory(e.target.value)}
-          className="rounded-xl border border-zinc-200 bg-white px-4 py-3 text-base outline-none focus:border-black"
+          className="rounded-xl border border-zinc-200 bg-white px-4 py-3 text-black outline-none focus:border-black"
         >
           <option value="All">All categories</option>
           <option value="Electronics">Electronics</option>
@@ -48,7 +48,7 @@ export default function Search() {
             value={searchLocation}
             onChange={(e) => setSearchLocation(e.target.value)}
             placeholder="Cape Town"
-            className="w-full rounded-xl border border-zinc-200 bg-white py-3 pl-11 pr-4 text-base outline-none focus:border-black"
+            className="w-full rounded-xl border border-zinc-200 bg-white py-3 pl-11 pr-4 text-black outline-none focus:border-black"
           />
         </div>
 
